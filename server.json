@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
-  "name": "com.taplio/taplio-linkedin-mcp",
+  "name": "io.github.taplioofficial/taplio-linkedin-mcp",
   "description": "Draft, schedule, and publish LinkedIn posts, read your analytics, and research inspiration through your Taplio account.",
   "repository": {
     "url": "https://github.com/TaplioOfficial/taplio-linkedin-mcp",
