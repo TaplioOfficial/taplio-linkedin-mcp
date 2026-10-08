@@ -33,6 +33,7 @@ Point your MCP host at the Taplio server and you can ask things like:
 - [Installation](#installation)
   - [Claude Code](#claude-code)
   - [Claude Desktop / claude.ai connectors](#claude-desktop--claudeai-connectors)
+  - [Manus](#manus)
   - [VS Code](#vs-code)
   - [Cursor](#cursor)
   - [Windsurf](#windsurf)
@@ -76,8 +77,8 @@ connects to the Taplio endpoint over HTTP and authenticates with OAuth.
 ## Prerequisites
 
 1. An active [Taplio](https://taplio.com) account with LinkedIn connected.
-2. An MCP-capable host (Claude Code, Claude Desktop, VS Code with Copilot, Cursor, Windsurf, or any client that
-   speaks MCP over HTTP).
+2. An MCP-capable host (Claude Code, Claude Desktop, Manus, VS Code with Copilot, Cursor, Windsurf, or any client
+   that speaks MCP over HTTP).
 3. A browser available on first connect, to complete the OAuth authorization.
 
 ---
@@ -94,12 +95,27 @@ Then run `/mcp` inside Claude Code and authorize `taplio` in the browser when pr
 
 ### Claude Desktop / claude.ai connectors
 
-In Claude Desktop or on claude.ai, open **Settings -> Connectors -> Add custom connector**, then enter:
+**One click:** open
+[this link](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Taplio&connectorUrl=https%3A%2F%2Fmcp.taplio.com)
+to get the "Add custom connector" dialog already filled in with the Taplio name and URL, then click **Add**.
+
+Or do it manually: in Claude Desktop or on claude.ai, open **Settings -> Connectors -> Add custom connector**, then
+enter:
 
 - **Name:** `Taplio`
 - **URL:** `https://mcp.taplio.com`
 
 Approve the OAuth screen. The Taplio tools then appear in the tool picker.
+
+### Manus
+
+Taplio is a native Manus plugin: one click, no server URL to paste.
+
+1. Open the [Manus plugins directory](https://manus.im/app/plugins#connector_b0b849c6-2cab-4a24-b300-4df5de49a4de).
+2. Find **Taplio** and click **Connect**.
+3. Sign in to your Taplio account and approve access.
+
+The Taplio tools are then available in your Manus tasks.
 
 ### VS Code
 
