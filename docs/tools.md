@@ -1,7 +1,7 @@
 # Tool reference
 
 Full reference for every tool exposed by the Taplio LinkedIn MCP Server. All tools operate on the authenticated
-user's own Taplio and LinkedIn account. Endpoint: `https://mcp.taplio.com`.
+user's own Taplio and LinkedIn account. Endpoint: `https://mcp.taplio.com/`.
 
 Quick index:
 
