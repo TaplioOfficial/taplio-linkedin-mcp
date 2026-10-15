@@ -1,17 +1,25 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.TaplioOfficial/taplio-linkedin-mcp",
-  "description": "Draft, schedule, publish, and analyze your LinkedIn posts from your AI assistant via Taplio.",
+  "title": "Taplio for LinkedIn",
+  "description": "Write, schedule and analyze LinkedIn posts, find inspiration, comment, like and connect via Taplio.",
   "repository": {
     "url": "https://github.com/TaplioOfficial/taplio-linkedin-mcp",
     "source": "github"
   },
-  "version": "1.0.0",
-  "websiteUrl": "https://taplio.com",
+  "version": "1.1.0",
+  "websiteUrl": "https://taplio.com/taplio-linkedin-mcp",
+  "icons": [
+    {
+      "src": "https://cdn.prod.website-files.com/6939243f5769a4de787769c3/693fd25c10dab46c2d863cbd_taplio_webclip.png",
+      "mimeType": "image/png",
+      "sizes": ["256x256"]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.taplio.com"
+      "url": "https://mcp.taplio.com/"
     }
   ]
 }

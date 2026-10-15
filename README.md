@@ -64,7 +64,7 @@ connects to the Taplio endpoint over HTTP and authenticates with OAuth.
 | Property        | Value                                                        |
 | --------------- | ------------------------------------------------------------ |
 | Transport       | Streamable HTTP (remote)                                     |
-| Endpoint        | `https://mcp.taplio.com`                                     |
+| Endpoint        | `https://mcp.taplio.com/`                                    |
 | Authentication  | OAuth 2.0 (authorize in the browser, no API key to paste)    |
 | Scope           | The authenticated user's own Taplio + LinkedIn account       |
 | Server hint     | Call [`get_me`](#get_me) first to load identity and settings |
@@ -88,7 +88,7 @@ connects to the Taplio endpoint over HTTP and authenticates with OAuth.
 ### Claude Code
 
 ```bash
-claude mcp add --transport http taplio https://mcp.taplio.com
+claude mcp add --transport http taplio https://mcp.taplio.com/
 ```
 
 Then run `/mcp` inside Claude Code and authorize `taplio` in the browser when prompted.
@@ -96,14 +96,14 @@ Then run `/mcp` inside Claude Code and authorize `taplio` in the browser when pr
 ### Claude Desktop / claude.ai connectors
 
 **One click:** open
-[this link](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Taplio&connectorUrl=https%3A%2F%2Fmcp.taplio.com)
+[this link](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Taplio&connectorUrl=https%3A%2F%2Fmcp.taplio.com%2F)
 to get the "Add custom connector" dialog already filled in with the Taplio name and URL, then click **Add**.
 
 Or do it manually: in Claude Desktop or on claude.ai, open **Settings -> Connectors -> Add custom connector**, then
 enter:
 
 - **Name:** `Taplio`
-- **URL:** `https://mcp.taplio.com`
+- **URL:** `https://mcp.taplio.com/`
 
 Approve the OAuth screen. The Taplio tools then appear in the tool picker.
 
@@ -126,7 +126,7 @@ Add to your user or workspace MCP configuration (`.vscode/mcp.json`):
   "servers": {
     "taplio": {
       "type": "http",
-      "url": "https://mcp.taplio.com"
+      "url": "https://mcp.taplio.com/"
     }
   }
 }
@@ -140,7 +140,7 @@ In `~/.cursor/mcp.json` (or **Settings -> MCP -> Add**):
 {
   "mcpServers": {
     "taplio": {
-      "url": "https://mcp.taplio.com"
+      "url": "https://mcp.taplio.com/"
     }
   }
 }
@@ -154,7 +154,7 @@ In `~/.codeium/windsurf/mcp_config.json`:
 {
   "mcpServers": {
     "taplio": {
-      "serverUrl": "https://mcp.taplio.com"
+      "serverUrl": "https://mcp.taplio.com/"
     }
   }
 }
@@ -169,7 +169,7 @@ Any client that supports remote MCP servers over HTTP can use:
   "mcpServers": {
     "taplio": {
       "type": "http",
-      "url": "https://mcp.taplio.com"
+      "url": "https://mcp.taplio.com/"
     }
   }
 }
@@ -408,7 +408,7 @@ update_draft ─┘        │                              │
 
 ## Troubleshooting
 
-- **Tools do not appear:** confirm the server URL is `https://mcp.taplio.com` and that you completed the OAuth
+- **Tools do not appear:** confirm the server URL is `https://mcp.taplio.com/` and that you completed the OAuth
   browser step. Re-run `/mcp` (Claude Code) or reconnect the connector.
 - **`401` / auth errors:** your session may have expired or been revoked. Reconnect and re-authorize in the
   browser.
