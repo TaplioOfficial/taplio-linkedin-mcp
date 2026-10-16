@@ -7,8 +7,9 @@
 The Taplio LinkedIn MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
 server that connects AI tools directly to your [Taplio](https://taplio.com) account and, through it, to your
 LinkedIn presence. It gives AI agents, assistants, and chat clients the ability to draft, schedule, and publish
-LinkedIn posts, browse what you have already posted, research inspiration from other creators, and read your
-analytics, all through natural language.
+LinkedIn posts, browse what you have already posted, research inspiration from other creators, read your
+analytics, and engage: find posts worth commenting on, draft comments and replies, like posts, and send
+connection requests, all through natural language.
 
 Point your MCP host at the Taplio server and you can ask things like:
 
@@ -37,10 +38,15 @@ Point your MCP host at the Taplio server and you can ask things like:
   - [VS Code](#vs-code)
   - [Cursor](#cursor)
   - [Windsurf](#windsurf)
+  - [Grok](#grok)
+  - [Mistral Le Chat](#mistral-le-chat)
+  - [Raycast](#raycast)
+  - [Smithery](#smithery)
   - [Generic MCP config](#generic-mcp-config)
 - [Authentication](#authentication)
 - [Toolsets](#toolsets)
 - [Tools](#tools)
+- [Tool reference](#tool-reference)
   - [Profile](#profile)
   - [Drafts](#drafts)
   - [Publishing](#publishing)
@@ -77,8 +83,8 @@ connects to the Taplio endpoint over HTTP and authenticates with OAuth.
 ## Prerequisites
 
 1. An active [Taplio](https://taplio.com) account with LinkedIn connected.
-2. An MCP-capable host (Claude Code, Claude Desktop, Manus, VS Code with Copilot, Cursor, Windsurf, or any client
-   that speaks MCP over HTTP).
+2. An MCP-capable host (Claude Code, Claude Desktop, Manus, VS Code with Copilot, Cursor, Windsurf, Grok, Mistral
+   Le Chat, Raycast, or any client that speaks MCP over HTTP).
 3. A browser available on first connect, to complete the OAuth authorization.
 
 ---
@@ -160,6 +166,38 @@ In `~/.codeium/windsurf/mcp_config.json`:
 }
 ```
 
+### Grok
+
+On [grok.com](https://grok.com), open **Plugins -> New Connector -> Custom**, then enter:
+
+- **Name:** `Taplio`
+- **Server URL:** `https://mcp.taplio.com/`
+
+Click **Add Connector** and approve the Taplio sign-in in the popup window. Mention Taplio in your prompt (for
+example "Use Taplio to give me my LinkedIn stats of the day") so Grok picks the connector.
+
+### Mistral Le Chat
+
+In Le Chat, open **Context -> Connectors -> Add connector -> Add a custom connector**, then enter:
+
+- **Connector name:** `Taplio`
+- **Server:** `https://mcp.taplio.com/`
+
+Authentication is detected automatically (OAuth 2.1). Click **Add connector** and approve the Taplio sign-in. If
+Le Chat answers that no Taplio connector is available, name the tool in your prompt (for example "Use the Taplio
+connector's get_me tool").
+
+### Raycast
+
+Install the [Model Context Protocol Registry](https://www.raycast.com/raycast/model-context-protocol-registry)
+extension, run **Search Servers**, keep the **Official** registry, search for `taplio`, and choose
+**Install Server**. Raycast connects over HTTP and opens the Taplio sign-in.
+
+### Smithery
+
+Open [smithery.ai/servers/taplio/linkedin-mcp](https://smithery.ai/servers/taplio/linkedin-mcp), click
+**Add to toolbox**, then **Authenticate** on the Taplio connector in your toolbox.
+
 ### Generic MCP config
 
 Any client that supports remote MCP servers over HTTP can use:
@@ -189,18 +227,79 @@ credentials are stored in your client config. Revoke access at any time from you
 
 The tools are grouped into functional toolsets. All of them operate on the authenticated user's own account.
 
-| Toolset         | Description                                                                 |
-| --------------- | --------------------------------------------------------------------------- |
-| **Profile**     | Identity, content preferences, and current LinkedIn stats.                  |
-| **Drafts**      | Create, read, list, edit, and delete unpublished post drafts.               |
-| **Publishing**  | Publish a draft now, schedule it, or unschedule it back to drafts.          |
-| **Posts**       | Browse scheduled, sending, and sent posts.                                  |
-| **Analytics**   | Account-level overview and per-post performance metrics.                    |
-| **Inspiration** | Search other creators' LinkedIn posts to model content on what works.       |
+| Toolset                      | Description                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------ |
+| **Account and analytics**    | Identity, content preferences, posts, and account and per-post analytics.      |
+| **Drafts and media**         | Create, read, list, edit, and delete drafts; upload and attach media.          |
+| **Schedule and publish**     | Publish a draft now, schedule it, or unschedule it back to drafts.             |
+| **Inspiration**              | Search other creators' LinkedIn posts to model content on what works.          |
+| **Engage**                   | Find posts and comments worth engaging with, comment, reply, and like.         |
+| **Network**                  | Queue connection requests and follow up on them.                               |
 
 ---
 
 ## Tools
+
+All 35 tools. Read-only tools never change anything; write tools change your Taplio drafts or act on LinkedIn,
+and clients that support tool annotations ask for confirmation before running them. Full input schemas are
+returned by the server (`tools/list`); the [tool reference](#tool-reference) below details the core tools.
+
+**Account and analytics**
+
+- `get_me` (read-only): Your identity, content preferences, and today's LinkedIn stats. Call it first.
+- `list_posts` (read-only): Your LinkedIn posts, newest first, from Taplio and published directly on LinkedIn.
+- `get_post` (read-only): One post by Taplio id or LinkedIn urn.
+- `get_analytics_overview` (read-only): Account analytics over time: followers, impressions, engagement.
+- `get_post_analytics` (read-only): Per-post impressions, likes, comments, and shares.
+
+**Drafts and media**
+
+- `list_drafts` (read-only): Your unpublished LinkedIn post drafts.
+- `get_draft` (read-only): One draft by id.
+- `create_draft` (write): Create a draft, optionally with media.
+- `update_draft` (write): Rewrite a draft or attach media to it.
+- `delete_draft` (write): Permanently delete a draft.
+- `list_media` (read-only): Media already uploaded to Taplio.
+- `create_media_upload_url` (write): Get a one-time upload URL for an image, video, GIF, or PDF.
+- `attach_media_from_url` (write): Attach media from a public URL to a draft.
+- `pick_media` (write): Interactive panel to attach media from your library, in clients that support MCP Apps.
+- `upload_media` (write): Interactive panel to upload a new file and attach it, in clients that support MCP Apps.
+
+**Schedule and publish**
+
+- `schedule_draft` (write): Schedule a draft to publish automatically at a future time.
+- `unschedule` (write): Move a scheduled post back to drafts.
+- `publish_draft` (write): Publish a draft now. It goes live and cannot be undone.
+
+**Inspiration**
+
+- `search_inspiration` (read-only): Search other creators' LinkedIn posts for proven formats and angles.
+
+**Engage**
+
+- `find_posts_to_comment` (read-only): Posts worth commenting on, from your posts, a curated feed, or a personalized selection.
+- `list_comment_feeds` (read-only): The curated feeds available for engagement.
+- `find_comments_to_reply` (read-only): Comments on posts that still deserve a reply.
+- `list_comment_drafts` (read-only): Your comment drafts, which are also the queue and history.
+- `get_comment_draft` (read-only): One comment draft, to confirm whether it was posted.
+- `create_comment_draft` (write): Draft a comment or a reply. Nothing reaches LinkedIn yet.
+- `update_comment_draft` (write): Rewrite a comment draft before it is committed.
+- `commit_comment_draft` (write): Queue a comment to be posted on LinkedIn under your name.
+- `cancel_comment_draft` (write): Cancel a queued comment before it is sent.
+- `like_post` (write): Queue a like on a post or a comment.
+- `get_post_like` (read-only): Status of a like you queued.
+- `cancel_like` (write): Cancel a queued like before it is sent.
+
+**Network**
+
+- `list_connection_requests` (read-only): Every connection request you queued, with its status.
+- `send_connection_request` (write): Queue a connection request to someone by LinkedIn username.
+- `get_connection_request` (read-only): Status of the latest request for a username.
+- `cancel_connection_request` (write): Cancel a queued connection request before it is sent.
+
+---
+
+## Tool reference
 
 ### Profile
 
@@ -373,6 +472,8 @@ Search LinkedIn posts from other creators to use as inspiration.
 4. Ship with [`schedule_draft`](#schedule_draft) (preferred) or [`publish_draft`](#publish_draft) (immediate).
 5. Report with [`get_analytics_overview`](#get_analytics_overview) and
    [`get_post_analytics`](#get_post_analytics), and cross-reference with [`list_posts`](#list_posts).
+6. Engage with `find_posts_to_comment` and `find_comments_to_reply`, draft with `create_comment_draft`, and only
+   call `commit_comment_draft`, `like_post`, or `send_connection_request` once the user agrees.
 
 ---
 
@@ -402,6 +503,9 @@ update_draft ─┘        │                              │
 - **Analytics range:** capped at 90 days per query; paginate with `cursor` for large result sets.
 - **Irreversible actions:** `publish_draft` goes live immediately and `delete_draft` is permanent. Confirm intent
   before calling either.
+- **Queued engagement:** `commit_comment_draft`, `like_post`, and `send_connection_request` queue the action; it
+  reaches LinkedIn minutes or hours later, paced to keep the account safe. Each can be cancelled until it is sent
+  (`cancel_comment_draft`, `cancel_like`, `cancel_connection_request`), and is irreversible once it is.
 - **Scope:** every tool acts only on the authenticated user's own Taplio and LinkedIn account.
 
 ---
