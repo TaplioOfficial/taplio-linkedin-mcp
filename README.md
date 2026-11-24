@@ -241,9 +241,11 @@ The tools are grouped into functional toolsets. All of them operate on the authe
 
 ## Tools
 
-All 35 tools. Read-only tools never change anything; write tools change your Taplio drafts or act on LinkedIn,
+All 37 tools. Read-only tools never change anything; write tools change your Taplio drafts or act on LinkedIn,
 and clients that support tool annotations ask for confirmation before running them. Full input schemas are
-returned by the server (`tools/list`); the [tool reference](#tool-reference) below details the core tools.
+returned by the server (`tools/list`); the [tool reference](#tool-reference) below details the core tools, and
+[docs/tools.md](docs/tools.md) classifies every tool (read, write, sensitive write) and covers statuses, errors,
+rate limits and plans.
 
 **Account and analytics**
 
@@ -287,6 +289,8 @@ returned by the server (`tools/list`); the [tool reference](#tool-reference) bel
 - `update_comment_draft` (write): Rewrite a comment draft before it is committed.
 - `commit_comment_draft` (write): Queue a comment to be posted on LinkedIn under your name.
 - `cancel_comment_draft` (write): Cancel a queued comment before it is sent.
+- `list_comments` (read-only): Comments you posted on other people's posts, with their stats.
+- `get_comment` (read-only): One posted comment, with its stats.
 - `like_post` (write): Queue a like on a post or a comment.
 - `get_post_like` (read-only): Status of a like you queued.
 - `cancel_like` (write): Cancel a queued like before it is sent.
