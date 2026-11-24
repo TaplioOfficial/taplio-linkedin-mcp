@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![MCP](https://img.shields.io/badge/protocol-MCP-blue.svg)](https://modelcontextprotocol.io)
 [![Remote server](https://img.shields.io/badge/type-remote%20(HTTP)-brightgreen.svg)](#remote-taplio-mcp-server)
+[![TaplioOfficial/taplio-linkedin-mcp MCP server](https://glama.ai/mcp/servers/TaplioOfficial/taplio-linkedin-mcp/badges/score.svg)](https://glama.ai/mcp/servers/TaplioOfficial/taplio-linkedin-mcp)
 
 The Taplio LinkedIn MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
 server that connects AI tools directly to your [Taplio](https://taplio.com) account and, through it, to your
