@@ -1,6 +1,6 @@
 # Tool reference
 
-Full reference for the 37 tools exposed by the Taplio LinkedIn MCP Server. Every tool acts only on the
+Full reference for the 38 tools exposed by the Taplio LinkedIn MCP Server. Every tool acts only on the
 authenticated user's own Taplio and LinkedIn account. Endpoint: `https://mcp.taplio.com/` (Streamable HTTP,
 OAuth). Full input and output schemas are returned by the server (`tools/list`).
 
@@ -69,12 +69,13 @@ tools that act on LinkedIn carry `openWorldHint: true`.
 | `like_post`                 | Engage                 | Sensitive write | Growth  |
 | `get_post_like`             | Engage                 | Read            | Growth  |
 | `cancel_like`               | Engage                 | Write           | Growth  |
+| `search_leads`              | Network                | Read            | Pro     |
 | `send_connection_request`   | Network                | Sensitive write | Pro     |
 | `list_connection_requests`  | Network                | Read            | Pro     |
 | `get_connection_request`    | Network                | Read            | Pro     |
 | `cancel_connection_request` | Network                | Write           | Pro     |
 
-19 read, 12 write, 6 sensitive write. "Any" means the tool works on every account, including the free calls of an
+20 read, 12 write, 6 sensitive write. "Any" means the tool works on every account, including the free calls of an
 account without a plan (see [Plans](#plans)).
 
 ---
@@ -154,6 +155,12 @@ account without a plan (see [Plans](#plans)).
 
 ### Network
 
+- **`search_leads`** (Read). Searches Taplio's database of LinkedIn professionals for people to reach out to.
+  Structured filters (country, job level, department, industry, company name or username, company size,
+  followers, last refresh) narrow the results, and `q` matches words in a profile, such as a role or a topic.
+  Each lead comes with name, headline, job title and level, department, company, country, follower count and
+  LinkedIn username; pass the username to `send_connection_request` to connect. Returns one page of 10 leads by
+  default, 50 at most, with `next_cursor` while more can be fetched.
 - **`send_connection_request`** (Sensitive write). Queues a connection request, without a note, to a LinkedIn
   member by public username. Asking again for someone already queued returns the same pending request.
 - **`list_connection_requests`** (Read). Connection requests the account queued, newest first, up to 100.
@@ -226,6 +233,9 @@ Before retrying any write, read the item back (`get_draft`, `get_comment_draft`,
 - **Lists:** 25 items by default, 100 at most; paginate with `cursor` where offered.
 - **Analytics:** ranges capped at 90 days.
 - **Content:** posts 1 to 3000 characters, comments 1 to 1250. `scheduled_for` at least 2 minutes ahead.
+- **Lead search:** each lead returned by `search_leads` counts toward a daily allowance of 1000 leads per user
+  (100 during the free trial), reset at 00:00 UTC; a call that returns no lead costs nothing. Past 2000 calls in
+  24 hours, the tool answers `rate_limit_exceeded`. Pages reach roughly the first 1000 matches.
 - **`find_comments_to_reply`:** 1 to 10 posts per call.
 - **`search_inspiration` defaults:** `min_likes` 50, `min_char_count` 500, `max_followers` 100000,
   `min_days_old` 1, `limit` 30. With `author`, `min_likes` and `min_char_count` default to 0 and `max_followers`
