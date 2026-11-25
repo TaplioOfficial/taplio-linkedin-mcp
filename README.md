@@ -1,4 +1,4 @@
-# Taplio LinkedIn MCP Server
+# Taplio for LinkedIn MCP Server
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![MCP](https://img.shields.io/badge/protocol-MCP-blue.svg)](https://modelcontextprotocol.io)
@@ -6,12 +6,12 @@
 [![TaplioOfficial/taplio-linkedin-mcp MCP server](https://glama.ai/mcp/servers/TaplioOfficial/taplio-linkedin-mcp/badges/score.svg)](https://glama.ai/mcp/servers/TaplioOfficial/taplio-linkedin-mcp)
 [![AllMCPs](https://allmcps.com/api/badge/taplio-linkedin-mcp?style=directory)](https://allmcps.com/mcp/taplio-linkedin-mcp?verify=d4aabb47-0f6b-449e-85a6-adb7ed29dbbb)
 
-The Taplio LinkedIn MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
+The Taplio for LinkedIn MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
 server that connects AI tools directly to your [Taplio](https://taplio.com) account and, through it, to your
 LinkedIn presence. It gives AI agents, assistants, and chat clients the ability to draft, schedule, and publish
 LinkedIn posts, browse what you have already posted, research inspiration from other creators, read your
-analytics, and engage: find posts worth commenting on, draft comments and replies, like posts, and send
-connection requests, all through natural language.
+analytics, search Taplio's lead database for prospects, and engage: find posts worth commenting on, draft
+comments and replies, like posts, and send connection requests, all through natural language.
 
 Point your MCP host at the Taplio server and you can ask things like:
 
@@ -19,6 +19,7 @@ Point your MCP host at the Taplio server and you can ask things like:
 - "Show me my last 10 posts and which one got the most impressions."
 - "Find 20 high-performing posts about `linkedin ghostwriting` from creators under 50k followers."
 - "How are my followers and engagement trending over the last 30 days?"
+- "Find 25 heads of marketing at software companies in France with 50 to 500 employees, and queue connection requests to the 5 best fits."
 
 ## Use cases
 
@@ -26,6 +27,7 @@ Point your MCP host at the Taplio server and you can ask things like:
 - Automating draft creation, scheduling, and publishing from any MCP-capable client.
 - Building AI-assisted content workflows and reporting on top of your real LinkedIn data.
 - Extracting insights and analytics from your posting history without leaving your assistant.
+- Building prospect lists from Taplio's lead database (Pro plan) and turning them into connection requests.
 
 ---
 
@@ -532,7 +534,7 @@ update_draft ─┘        │                              │
 
 ## Contributing
 
-This repository documents the Taplio LinkedIn MCP Server. See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to
+This repository documents the Taplio for LinkedIn MCP Server. See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to
 report issues with the documentation or suggest improvements. For product support, contact Taplio.
 
 ---
