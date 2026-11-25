@@ -236,13 +236,13 @@ The tools are grouped into functional toolsets. All of them operate on the authe
 | **Schedule and publish**     | Publish a draft now, schedule it, or unschedule it back to drafts.             |
 | **Inspiration**              | Search other creators' LinkedIn posts to model content on what works.          |
 | **Engage**                   | Find posts and comments worth engaging with, comment, reply, and like.         |
-| **Network**                  | Queue connection requests and follow up on them.                               |
+| **Network**                  | Search for leads, queue connection requests and follow up on them.             |
 
 ---
 
 ## Tools
 
-All 37 tools. Read-only tools never change anything; write tools change your Taplio drafts or act on LinkedIn,
+All 38 tools. Read-only tools never change anything; write tools change your Taplio drafts or act on LinkedIn,
 and clients that support tool annotations ask for confirmation before running them. Full input schemas are
 returned by the server (`tools/list`); the [tool reference](#tool-reference) below details the core tools, and
 [docs/tools.md](docs/tools.md) classifies every tool (read, write, sensitive write) and covers statuses, errors,
@@ -298,6 +298,7 @@ rate limits and plans.
 
 **Network**
 
+- `search_leads` (read-only): Search Taplio's lead database for people to reach out to, by filters and keywords.
 - `list_connection_requests` (read-only): Every connection request you queued, with its status.
 - `send_connection_request` (write): Queue a connection request to someone by LinkedIn username.
 - `get_connection_request` (read-only): Status of the latest request for a username.
