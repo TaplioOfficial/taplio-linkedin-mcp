@@ -1,6 +1,6 @@
 # Tool reference
 
-Full reference for the 38 tools exposed by the Taplio LinkedIn MCP Server. Every tool acts only on the
+Full reference for the 38 tools exposed by the Taplio for LinkedIn MCP Server. Every tool acts only on the
 authenticated user's own Taplio and LinkedIn account. Endpoint: `https://mcp.taplio.com/` (Streamable HTTP,
 OAuth). Full input and output schemas are returned by the server (`tools/list`).
 

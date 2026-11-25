@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.TaplioOfficial/taplio-linkedin-mcp",
   "title": "Taplio for LinkedIn",
-  "description": "Write, schedule and analyze LinkedIn posts, find inspiration, comment, like and connect via Taplio.",
+  "description": "Find leads, write, schedule and analyze LinkedIn posts, find inspiration, comment, like and connect.",
   "repository": {
     "url": "https://github.com/TaplioOfficial/taplio-linkedin-mcp",
     "source": "github"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "websiteUrl": "https://taplio.com/taplio-linkedin-mcp",
   "icons": [
     {

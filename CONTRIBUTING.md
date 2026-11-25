@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in the Taplio LinkedIn MCP Server documentation.
+Thanks for your interest in the Taplio for LinkedIn MCP Server documentation.
 
 This repository is documentation-first: it describes the hosted, remote Taplio MCP Server and the tools it
 exposes. The server itself is operated by Taplio and is not built from this repository.
